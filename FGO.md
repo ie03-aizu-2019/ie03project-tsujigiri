@@ -1,2 +1,2 @@
-yo!yo!
+yo!ya!
 FOOOOOOOOOOOOO!!!
