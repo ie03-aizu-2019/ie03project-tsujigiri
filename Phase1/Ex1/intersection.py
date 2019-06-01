@@ -7,7 +7,7 @@
 
     status: fin.ex1 - go.ex2
 
-    TODO: not complete sort_by_Y
+    TODO: not complete sort_by_Y.
                                                         """
 
 import Cross_Checks
