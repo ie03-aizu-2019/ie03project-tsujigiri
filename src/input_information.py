@@ -3,7 +3,7 @@ class input_information:
         self.N, self.M, self.P, self.Q = self.main_info()
         self.x_b, self.y_b = self.points_info(self.N)
         self.b, self.e = self.line_info(self.N, self.M)
-        self.s, self.d, self.k = self.discance_info(self.Q)
+        self.s, self.d, self.k, self.c_s, self.c_d = self.discance_info(self.Q)
 
 
     @classmethod
@@ -75,9 +75,26 @@ class input_information:
         s = []
         d = []
         k = []
+        c_s = [] # the number cross in s
+        c_d = [] # the number cross in d
         print("input discance information")
         for i in range(Q):
             tmp = input().split()
+            # check "C", cross points input
+                # if the first char in s is "C"
+            if tmp[0][0] == "C":
+                c_s.append(i)
+                tmp[0] = int(tmp[0][1])
+                # if the first char in d is "C"
+            if tmp[1][0] == "C":
+                c_d.append(i)
+                tmp[1] = int(tmp[1][1])
+
+            tmp[2] = int(tmp[2])
+
+
+
+
             # regulation check
 
 
@@ -85,11 +102,9 @@ class input_information:
             s.append(tmp[0])
             d.append(tmp[1])
             k.append(tmp[2])
+        return s, d, k, c_s, c_d
 
-        return s, d, k
 
-"""
 if __name__ == '__main__':
-    eArray, bArray = input_information.line_info(4,2)
-    print(eArray)
-"""
+    s, d, k = input_information.distance_info(2)
+    print(s)
