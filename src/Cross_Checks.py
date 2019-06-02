@@ -5,12 +5,14 @@
         line0 and line1 intersect or not
                                             """
 import Line
+# only for debug
+import Point
 
 class Cross_Checks:
-    def __init__(self, N, line0, line1):
+    def Cross_Checks(N, line0, line1):
             intersection = False #judge intersection
             if N == 3: # when N = 3, no intersection
-                print("NA")
+                return None
             else: # N == 4
                 """ we should devide to 4 cases:
                     case1: no slope * no slope
@@ -59,11 +61,13 @@ class Cross_Checks:
                     # print intersection
                     x = -(b1 - b2)/(a1 - a2)
                     y = a1 * x + b1
-                    print(x, y)
-                else:
-                    print("NA")
+                    a_cross_point = Point.Point(x, y)
 
-"""
+                    return a_cross_point
+                else:
+                    return None
+
+
 if __name__ == '__main__':
 
     N = 4
@@ -75,5 +79,6 @@ if __name__ == '__main__':
     line1 = Line.Line(p1, p2)
     line2 = Line.Line(p3, p4)
 
-    Cross_Checks(N, line1, line2)
-"""
+    a_cross_point = Cross_Checks.Cross_Checks(N, line1, line2)
+
+    print(a_cross_point.x, a_cross_point.y)

@@ -1,9 +1,13 @@
-import sys
 import information
 import intersection
 
-args = sys.argv
+def Display_Intersection(points):
+    for i in range(len(points)):
+        print(points[i].x, points[i].y)
+
 
 if __name__ == '__main__':
     info = information.information()
-    intersection.intersection(info.N, info.lines[0], info.lines[1])
+
+    Cross_points = intersection.intersection.intersection(info.N, info.M, info.lines)
+    Display_Intersection(Cross_points)
