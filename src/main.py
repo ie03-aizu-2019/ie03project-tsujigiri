@@ -1,8 +1,5 @@
-import sys
 import information
 import intersection
-
-args = sys.argv
 
 if __name__ == '__main__':
     info = information.information()
