@@ -3,71 +3,93 @@ class input_information:
         self.N, self.M, self.P, self.Q = self.main_info()
         self.x_b, self.y_b = self.points_info(self.N)
         self.b, self.e = self.line_info(self.N, self.M)
+        self.s, self.d, self.k = self.discance_info(self.Q)
+
 
     @classmethod
     def main_info(self):
         print("input main information")
-        while(True):
-            In = input("")
-            In = In.split(" ")
-            for i in range(len(In)):
-                In[i] = int(In[i])
+        while(True): # loop for regulation check
+            tmp = list(map(int, input().split()))
+            N = tmp[0]
+            M = tmp[1]
+            P = tmp[2]
+            Q = tmp[3]
+
             # regulation checks
-            if (2 <= In[0]) and (In[0] <= 200):
-                if (1 <= In[1]) and (In[1] <= 100):
-                    if (In[2] == 0) and (In[3] == 0):
+            if (2 <= N) and (N <= 200):
+                if (1 <= M) and (M <= 100):
+                    if(P == 0) and (Q == 0):
                         break
+
             print("retype")
-        return In
+
+
+        return N, M, P, Q
 
     @classmethod
     def points_info(self, N):
-        x = []
-        y = []
+        xArray = []
+        yArray = []
         print("input points information")
         for i in range(N):
-            while(True):
-                In = input("")
-                In = In.split(" ")
-                for j in range(2):
-                    In[j] = int(In[j])
-
-                x.append(In[0])
-                y.append(In[1])
-
+            while(True): # loop for regulation check
+                tmp = list(map(int, input().split()))
+                x = tmp[0]
+                y = tmp[1]
                 # regulation check
-                if ((0 <= x[i]) and (x[i] <= 1000)) and ((0 <= y[i]) and (y[i] <= 1000)):
+                if (0 <= (x or y)) and ((x or y ) <= 1000):
                     break
-
                 print("retype")
 
-        return x, y
+            xArray.append(x)
+            yArray.append(y)
+
+
+        return xArray, yArray
 
     @classmethod
     def line_info(self, N, M):
-        b = []
-        e = []
+        bArray = []
+        eArray = []
         print("input line information")
         for i in range(M):
-            while(True):
-                In = input("")
-                In = In.split(" ")
-                for j in range(2):
-                    In[j] = int(In[j])
-
-                b.append(In[0])
-                e.append(In[1])
-
+            while(True): # for regulation check
+                tmp = list(map(int, input().split()))
+                b = tmp[0]
+                e = tmp[1]
                 # regulation check
-                if ((0 <= b[i]) and (b[i] <= N)) or ((0 <= e[i]) and (e[i] <= N)):
+                if (0 <= (b or e)) and ((b or e) <= N):
                     break
 
                 print("retype")
 
-        return b, e
+
+            bArray.append(b)
+            eArray.append(e)
+
+        return bArray, eArray
+
+    @classmethod
+    def distance_info(self, Q):
+        s = []
+        d = []
+        k = []
+        print("input discance information")
+        for i in range(Q):
+            tmp = input().split()
+            # regulation check
+
+
+
+            s.append(tmp[0])
+            d.append(tmp[1])
+            k.append(tmp[2])
+
+        return s, d, k
 
 """
 if __name__ == '__main__':
-    info = information()
-    print(info.N)
-    """
+    eArray, bArray = input_information.line_info(4,2)
+    print(eArray)
+"""
