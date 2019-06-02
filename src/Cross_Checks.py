@@ -5,9 +5,11 @@
         line0 and line1 intersect or not
                                             """
 import Line
+# only for debug
+import Point
 
 class Cross_Checks:
-    def __init__(self, N, line0, line1):
+    def Cross_Checks( N, line0, line1):
             intersection = False #judge intersection
             if N == 3: # when N = 3, no intersection
                 print("NA")
