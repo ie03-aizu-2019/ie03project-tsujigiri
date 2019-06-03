@@ -41,64 +41,61 @@ def partition(A, p, r):
     return i+1
 
 
-class intersection:
-    # make the Cross Points
-    def intersection(N, M ,lines):
-        Cpoints = [] # Cross Points
-        for i in range(0, M-1):
-            for j in range(i+1, M):
-                check = Cross_Checks.Cross_Checks.Cross_Checks(N, lines[i], lines[j])
-                if check is None:
-                    continue
-                Cpoints.append(check) # for assignment 1
+# make the Cross Points
+def intersection(N, M ,lines):
+    Cpoints = [] # Cross Points
+    for i in range(0, M-1):
+        for j in range(i+1, M):
+            check = Cross_Checks.Cross_Checks(N, lines[i], lines[j])
+            if check is None:
+                continue
+            Cpoints.append(check) # for assignment 1
 
-        # sort and return
-        Cpoints = intersection.sort_cross_points(Cpoints)
-        return Cpoints
+    # sort and return
+    Cpoints = sort_cross_points(Cpoints)
+    return Cpoints
 
-    # Sort to x orders
-    @classmethod
-    def sort_cross_points(self, Cpoints):
-        # sort by a element x
-        Cpoints = intersection.sort_by_X(Cpoints)
-        #Cpoints = intersection.sort_by_Y(Cpoints)
+# Sort to x orders
+def sort_cross_points(Cpoints):
+    # sort by a element x
+    Cpoints = sort_by_X(Cpoints)
+    #Cpoints = intersection.sort_by_Y(Cpoints)
 
-        return Cpoints
+    return Cpoints
 
-    # a part of sort_cross_points, sort by x
-    @classmethod
-    def sort_by_X(self, Cpoints):
-        # get x info
-        X = []
-        for i in range(len(Cpoints)):
-            X.append(Cpoints[i].x)
+# a part of sort_cross_points, sort by x
+def sort_by_X(Cpoints):
+    # get x info
+    X = []
+    for i in range(len(Cpoints)):
+        X.append(Cpoints[i].x)
 
-        # sort X
-        X = quickSort(X, 0, len(X)-1)
+    # sort X
+    X = quickSort(X, 0, len(X)-1)
 
-        # adjust X to Cpoints
-        fixed_points = []
-        for i in range(len(Cpoints)):
-            for j in range(len(X)):
-                if X[i] == Cpoints[j].x:
-                    fixed_points.append(Cpoints[j])
+    # adjust X to Cpoints
+    fixed_points = []
+    for i in range(len(Cpoints)):
+        for j in range(len(X)):
+            if X[i] == Cpoints[j].x:
+                fixed_points.append(Cpoints[j])
 
-        return fixed_points
-    def sort_by_Y(self, Cpoints):
-        # get y info
-        Y = []
-        for i in range(len(Cpoints)):
-            Y.append(Cpoints.y)
+    return fixed_points
+def sort_by_Y(Cpoints):
+    # get y info
+    Y = []
+    for i in range(len(Cpoints)):
+        Y.append(Cpoints.y)
 
-        for i in range(len(Cpoints)):
-            c = False
-            if Cpoints[i].x == Cpoints[i+1].x:
-                c = True
+    for i in range(len(Cpoints)):
+        c = False
+        if Cpoints[i].x == Cpoints[i+1].x:
+            c = True
 
 
 
 
-"""
+
 if __name__ == '__main__':
 
 
@@ -120,8 +117,6 @@ if __name__ == '__main__':
     lines.append(Line.Line(p2, p5)) #3
 
 
-    points = intersection.intersection(N, M, lines)
+    points = intersection(N, M, lines)
     for i in range(len(points)):
         print(points[i].x, points[i].y)
-
-        """
