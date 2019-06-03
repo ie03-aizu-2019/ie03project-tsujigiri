@@ -2,11 +2,6 @@
     The program to research there are intersections,
     mC2 times research
 
-    modify at ex2:
-        Cross_Checks: 1 times -> mC2 times
-
-    status: fin.ex1 - go.ex2
-
     TODO: not complete sort_by_Y.
                                                         """
 

@@ -1,4 +1,4 @@
-
+import math
 
 import Point
 import Line
@@ -12,42 +12,34 @@ def search_linesOfPoint(Vi, lines): # argument are Point type, Line[] type
 
 
     return inLine
-# ある点とその点を含む一本線分をいれ、その点を除く線分上にある交差点（対応する点も含む）をすべて返す。
-def intersection_2(Vi, line):
-    
-    fPoint = Cross_Checks_2()
-    fPoint.append(fPoint)
+# ある点とその点を含む一本線分、そしてすべての線分をいれ、その点を除く線分上にある交差点（線と点とでの交差点、ある点が線分で対応する点を含む）をすべて返す。
+def nextTo(Vi, aLine, lines):
 
-    callpoint = f()
+    onLine_Points = intersections2(aLine, lines)
+    callpoint = inverse_point(Vi, aLine)
+    onLine_Points.append(callpoint)
 
-    T.append(callpoint)
+    return onLIne_Points
 
-    return T
-
-def distance(Vi, W):
-
-    return dist
-
-
+#　第一引数の線分の上の交差地点を全て返す。
+def intersections2(aLine, lines):
+    return onLIne_Points
+# 点p1と点p1,p2によってなる線分を入れ、p2を返す。
+def inverse_point(p1, line):
+    return p2
 
 
 
-
-
-
-
+# ２点を入れ、２点間の距離を実数で返す。
+def distance(Vi, W): # two Points
+    dts = math.sqrt((Vi.y-W.y)**2 + (Vi.x-W.x)**2)
+    return dts
 
 
 
 
+"""
 
-
-
-
-
-if __name__ == '__main__':
-    """
-    check for search_linesOfPoint
     p1 = Point.Point(1,2)
     p2 = Point.Point(3,4)
     q1 = Point.Point(5,6)
@@ -65,3 +57,11 @@ if __name__ == '__main__':
     for i in range(len(inLine)):
         print(inLine[i].p1.y)
 """
+"""
+if __name__ == '__main__':
+    p1 = Point.Point(1,2)
+    p2 = Point.Point(3,4)
+
+    dts = distance(p1,p2)
+    print(dts)
+    """
