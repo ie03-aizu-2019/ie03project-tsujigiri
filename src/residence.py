@@ -2,6 +2,25 @@ import math
 
 import Point
 import Line
+import intersection2
+
+
+""" There is a point, X.
+    Search all points next to X, and measure the each distance   """
+class residence(aPoint):
+    edges = []
+
+    inLine = search_linesOfPoint(apoint) # all lines against aPoint
+    for i in range(len(inLine)):
+        insec = intersection2.intersection2(inLine[i]) # get all intersections
+        invPoint = inverse_point()
+        insec.append(invPoint)
+        near = nearPoint()  # near is the point, which is nearest to aPoint
+        dis = distance(aPoint, near) # the distance
+
+        aEdge = Edge.Edge(aPoint, near, dis) # build a edge
+
+
 
 # ある点（一つでも線の要素となっている点)と複数の線分をいれ、ある点を含む線分をすべて返す。
 def search_linesOfPoint(Vi, lines): # argument are Point type, Line[] type
@@ -12,7 +31,9 @@ def search_linesOfPoint(Vi, lines): # argument are Point type, Line[] type
 
 
     return inLine
-# ある点とその点を含む一本線分、そしてすべての線分をいれ、その点を除く線分上にある交差点（線と点とでの交差点、ある点が線分で対応する点を含む）をすべて返す。
+    # cmp
+
+
 def nextTo(Vi, aLine, lines):
 
     onLine_Points = intersections2(aLine, lines)
@@ -22,8 +43,7 @@ def nextTo(Vi, aLine, lines):
     return onLIne_Points
 
 #　第一引数の線分の上の交差地点を全て返す。
-def intersections2(aLine, lines):
-    return onLIne_Points
+
 # 点p1と点p1,p2によってなる線分を入れ、p2を返す。
 def inverse_point(p1, line):
     return p2

@@ -3,7 +3,7 @@ class input_information:
         self.N, self.M, self.P, self.Q = self.main_info()
         self.x_b, self.y_b = self.points_info(self.N)
         self.b, self.e = self.line_info(self.N, self.M)
-        self.s, self.d, self.k, self.c_s, self.c_d = self.discance_info(self.Q)
+        self.s, self.d, self.k, self.c_s, self.c_d = self.distance_info(self.Q)
 
 
     @classmethod
@@ -16,11 +16,12 @@ class input_information:
             P = tmp[2]
             Q = tmp[3]
 
-            # regulation checks
-            if (2 <= N) and (N <= 200):
-                if (1 <= M) and (M <= 100):
-                    if(P == 0) and (Q == 0):
-                        break
+            # regulation checks(3)
+            if (2 <= N) and (N <= 1000):
+                if (1 <= M) and (M <= 500):
+                    if(P == 0):
+                        if (0 <= Q) and (Q <= 100):
+                            break
 
             print("retype")
 
@@ -37,7 +38,7 @@ class input_information:
                 tmp = list(map(int, input().split()))
                 x = tmp[0]
                 y = tmp[1]
-                # regulation check
+                # regulation check(3)
                 if (0 <= (x or y)) and ((x or y ) <= 1000):
                     break
                 print("retype")
@@ -53,16 +54,18 @@ class input_information:
         bArray = []
         eArray = []
         print("input line information")
-        for i in range(M):
-            while(True): # for regulation check
-                tmp = list(map(int, input().split()))
-                b = tmp[0]
-                e = tmp[1]
-                # regulation check
-                if (0 <= (b or e)) and ((b or e) <= N):
-                    break
 
+        for i in range(M):
+            # for regulation check
+            tmp = list(map(int, input().split()))
+
+            b = tmp[0]
+            e = tmp[1]
+            # regulation check
+            if ((b or e) < 0 or N < (b or e)):
                 print("retype")
+                i -= 1
+                continue
 
 
             bArray.append(b)
@@ -104,7 +107,10 @@ class input_information:
             k.append(tmp[2])
         return s, d, k, c_s, c_d
 
-
+"""
 if __name__ == '__main__':
-    s, d, k = input_information.distance_info(2)
-    print(s)
+    #s, d, k = input_information.distance_info(2)
+    #input_information.line_info(6,5)
+    #print(s)
+
+"""

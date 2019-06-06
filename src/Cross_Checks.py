@@ -1,6 +1,9 @@
 """
     The program, only judge that 2 lines,
         line0 and line1 intersect or not
+
+
+        不完全です。
                                             """
 import Line
 # for debug
