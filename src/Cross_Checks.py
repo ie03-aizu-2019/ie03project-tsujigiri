@@ -1,101 +1,87 @@
-"""
-    The program, only judge that 2 lines,
-        line0 and line1 intersect or not
-
-
-        不完全です。
-                                            """
-import Line
-# for debug
 import Point
+import Line
+
+class Cross_Checks():
+    def __init__(self, l1, l2):
+        self.CrossApoint = self.func(l1, l2)
+
+    @classmethod
+    def func(self, l1, l2):
+        A = Step1(l1, l2)
+        if A != 0: # if not, no intersection
+
+            s, t = Step2(A, l1, l2)
+            if ((0 < s) and (s < 1)) and ((0 < t) and (t < 1)):  # except line and point
+                if Step3(s, t):
+                    x, y = Step4(l1, l2, s, t)
+                    cPoint = Point.Point(x, y)
+
+                    return cPoint
+
+        return False
 
 
+def Step1(l1, l2):
+    A = ((l1.p2.x-l1.p1.x)*(l2.p1.y-l2.p2.y)) + ((l2.p2.x-l2.p1.x)*(l1.p2.y-l1.p1.y))
+    return A
 
-def Cross_Checks(N, line0, line1):
-    intersection = False #judge intersection
-    if N == 3: # when N = 3, no intersection
-        return None
-    else: # N == 4
-        """ assuming:
-                y = a1x + b1
-                y = a2x + b2
-                then: intersecthon(X, Y)
-                    X = -(b1 - b2)/(a1 - a2)
-                    Y = (a1 * x) + b1
+def Step2(A, l1, l2):
 
-                    we should devide to 4 cases:
-                    case1: no slope * no slope
-                    case2: slope * no slope
-                    case3: no slope * slope
-                    case4: slope * slope    """
+    B = [[l2.p1.y-l2.p2.y, l2.p2.x-l2.p1.x], [l1.p1.y-l1.p2.y, l1.p2.x-l1.p1.x]]
 
-        # case 1: x = k and x = l, the two are not intersect absolutely
-        if (line0.p1.x == line0.p2.x) and (line1.p1.x == line1.p2.x):
-            intersection = False
 
-        # case 2: x = k and y = ax + b
-        elif (line0.p1.x == line0.p2.x):
-            a2 = (line1.p1.y - line1.p2.y)/(line1.p1.x - line1.p2.x)
-            b2 = line1.p1.y - (a2 * line1.p1.x)
-            UpDn1 = line0.p1.y - (a2 * line0.p1.x + b2)
-            UpDn2 = line0.p2.y - (a2 * line0.p2.x + b2)
-            if UpDn1 * UpDn2 < 0:
-                if ((line1.p1.x < line0.p1.x) and (line0.p1.x < line1.p2.x) ) or ((line1.p2.x < line0.p1.x) and (line0.p1.x < line1.p1.x)):
-                    intersection = True
+    C = [l2.p1.x-l1.p1.x, l2.p1.y-l1.p1.y]
 
-        # case 3: x = k and y = ax + b, similialy
-        elif (line1.p1.x == line1.p2.x):
-            a1 = (line0.p1.y - line0.p2.y)/(line0.p1.x - line0.p2.x)
-            b1 = line0.p1.y - (a1 * line0.p1.x)
-            UpDn1 = line1.p1.y - (a1 * line1.p1.x + b1)
-            UpDn2 = line1.p2.y - (a1 * line1.p2.x + b1)
-            if UpDn1 * UpDn2 < 0:
-                if ((line0.p1.x < line1.p1.x) and (line1.p1.x < line0.p2.x) ) or ((line0.p2.x < line1.p1.x) and (line1.p1.x < line0.p1.x)):
-                    intersection = True
 
-        else: # case4
-            # when not vertical
-            # y = ax + b
-            a1 = (line0.p1.y - line0.p2.y)/(line0.p1.x - line0.p2.x)
-            b1 = line0.p1.y - (a1 * line0.p1.x)
-            # UpDn > 0 then above, UpDn < 0 then below
-            UpDn1 = line1.p1.y - (a1 * line1.p1.x + b1)
-            UpDn2 = line1.p2.y - (a1 * line1.p2.x + b1)
+    s = (B[0][0]*C[0] + B[0][1]*C[1])/A
+    t = (B[1][0]*C[0] + B[1][1]*C[1])/A
 
-            if UpDn1 * UpDn2 < 0:
-                # next judge
-                a2 = (line1.p1.y - line1.p2.y)/(line1.p1.x - line1.p2.x)
-                b2 = line1.p1.y - (a2 * line1.p1.x)
-                # UpDn > 0 then above, UpDn < 0 then below
-                UpDn1 = line0.p1.y - (a2 * line0.p1.x + b2)
-                UpDn2 = line0.p2.y - (a2 * line0.p2.x + b2)
-                if UpDn1 * UpDn2 < 0:
-                    intersection = True
+    return s, t
 
-        if intersection == True:
-            # print intersection
-            x = -(b1 - b2)/(a1 - a2)
-            y = a1 * x + b1
+def Step3(s, t):
 
-            point = Point.Point(x, y)
-            return point
+    if ((0 <= s) and (s <= 1)) and ((0 <= t) and (t <= 1)):
+        return True
+    else:
+        return False
 
-        else:
-            return None
+def Step4(l1, l2, s, t):
+    x = l1.p1.x + (l1.p2.x - l1.p1.x)*s
+    y = l1.p1.y + (l1.p2.y - l1.p1.y)*s
+
+    return x, y
 
 """
 if __name__ == '__main__':
 
-    N = 4
     p1 = Point.Point(0, 0)
-    p2 = Point.Point(5, 5)
-    p3 = Point.Point(2, 5)
-    p4 = Point.Point(7, 1)
+    q1 = Point.Point(5, 5)
+    p2 = Point.Point(2, 5)
+    q2 = Point.Point(7, 1)
 
-    line1 = Line.Line(p1, p2)
-    line2 = Line.Line(p3, p4)
+    l1 = Line.Line(p1, q1)
+    l2 = Line.Line(p2, q2)
 
-    point = Cross_Checks(N, line1, line2)
 
-    print(point.x)
+    point = Cross_Checks(l1, l2)
+    if point.CrossApoint:
+        print(point.CrossApoint.x, point.CrossApoint.y)
+
 """
+"""
+# ex2, example
+p1 = Point.Point(0, 0)
+p2 = Point.Point(2, 5)
+p3 = Point.Point(4, 7)
+p4 = Point.Point(5, 5)
+p5 = Point.Point(7, 1)
+p6 = Point.Point(9, 5)
+
+
+l1 = Line.Line(p1, p4)
+l2 = Line.Line(p3, p5)
+
+point = Cross_Checks(l1, l2)
+if point.CrossApoint:
+    print(point.CrossApoint.x, point.CrossApoint.y)
+    """
