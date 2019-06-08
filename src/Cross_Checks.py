@@ -1,17 +1,23 @@
 import Point
 import Line
 
+
+# mode: 0 -> only line to line
+# mode: 1 -> above but also, line to point
 class Cross_Checks():
-    def __init__(self, l1, l2):
-        self.CrossApoint = self.func(l1, l2)
+    def __init__(self, l1, l2, mode):
+        if mode == 0:
+            self.CrossApoint = self.Mode0(l1, l2)
+        elif mode == 1:
+            self.CrossApoint = self.Mode1(l1, l2)
 
     @classmethod
-    def func(self, l1, l2):
+    def Mode0(self, l1, l2):
         A = Step1(l1, l2)
         if A != 0: # if not, no intersection
 
             s, t = Step2(A, l1, l2)
-            if ((0 < s) and (s < 1)) and ((0 < t) and (t < 1)):  # except line and point
+            if ((0 < s) and (s < 1)) and ((0 < t) and (t < 1)):  # only line to line
                 if Step3(s, t):
                     x, y = Step4(l1, l2, s, t)
                     cPoint = Point.Point(x, y)
@@ -19,6 +25,26 @@ class Cross_Checks():
                     return cPoint
 
         return False
+
+    @classmethod
+    def Mode1(self, l1, l2):
+        A = Step1(l1, l2)
+        if A != 0: # if not, no intersection
+
+            s, t = Step2(A, l1, l2)
+            if (((0 <= s) and (s <= 1)) and ((0 < t) and (t < 1))) or (((0 < s) and (s < 1)) and ((0 <= t) and (t <= 1))): # only line to line or line to point
+                if Step3(s, t):
+                    x, y = Step4(l1, l2, s, t)
+                    cPoint = Point.Point(x, y)
+
+                    return cPoint
+
+        return False
+
+
+
+
+
 
 
 def Step1(l1, l2):
@@ -81,7 +107,7 @@ p6 = Point.Point(9, 5)
 l1 = Line.Line(p1, p4)
 l2 = Line.Line(p3, p5)
 
-point = Cross_Checks(l1, l2)
+point = Cross_Checks(l1, l2, 0)
 if point.CrossApoint:
     print(point.CrossApoint.x, point.CrossApoint.y)
     """

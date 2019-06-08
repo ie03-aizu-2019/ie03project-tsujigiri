@@ -11,7 +11,7 @@ import Line
 
 
 class Collect_Edges():
-    def __init__(self):
+    def __init__(self, info_lines):
         edges = [] # the value, which is returned at the end.
         V = input_pointsOflines(lines) # lines -> all points except for all intersections.
         for i in range(len(V)):   # all points
@@ -45,7 +45,7 @@ class Collect_Edges():
         return Fd
         # cmp
 
-"""
+
 if __name__ == '__main__':
     p1 = Point.Point(0,0)
     p2 = Point.Point(1,1)
@@ -61,4 +61,3 @@ if __name__ == '__main__':
 
     for i in range(len(V)):
         print(V[i].x)
-"""

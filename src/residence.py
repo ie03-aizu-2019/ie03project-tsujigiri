@@ -2,23 +2,33 @@ import math
 
 import Point
 import Line
-import intersection2
+import Edge
+import aLine_inters
 
 
 """ There is a point, X.
     Search all points next to X, and measure the each distance   """
-class residence(aPoint):
-    edges = []
+class residence():
+    def __init__(self, aPoint, info_lines):
+        self.edges = []
 
-    inLine = search_linesOfPoint(apoint) # all lines against aPoint
-    for i in range(len(inLine)):
-        insec = intersection2.intersection2(inLine[i]) # get all intersections
-        invPoint = inverse_point()
-        insec.append(invPoint)
-        near = nearPoint()  # near is the point, which is nearest to aPoint
-        dis = distance(aPoint, near) # the distance
+        inLines = search_linesOfPoint(aPoint, info_lines) # all lines, include aPoint as end point
+        # test
+        for i in range(len(inLines)):
+            insec = aLine_inters.aLine_inters(inLines[i], info_lines) # get all intersections
 
-        aEdge = Edge.Edge(aPoint, near, dis) # build a edge
+            invPoint = inverse_point(aPoint, inLines[i])
+            #print("invPoint = ",invPoint.x, invPoint.y)
+
+            insec.onLine_Points.append(invPoint)
+
+            near = nearPoint(aPoint, insec.onLine_Points)  # near is the point, which is nearest to aPoint
+            #print("nearPoint = ",near.x, near.y)
+            dis = distance(aPoint, near) # the distance
+
+            aEdge = Edge.Edge(aPoint, near, dis) # build a edge
+
+            self.edges.append(aEdge)
 
 
 
@@ -34,20 +44,24 @@ def search_linesOfPoint(Vi, lines): # argument are Point type, Line[] type
     # cmp
 
 
-def nextTo(Vi, aLine, lines):
-
-    onLine_Points = intersections2(aLine, lines)
-    callpoint = inverse_point(Vi, aLine)
-    onLine_Points.append(callpoint)
-
-    return onLIne_Points
-
-#　第一引数の線分の上の交差地点を全て返す。
-
 # 点p1と点p1,p2によってなる線分を入れ、p2を返す。
 def inverse_point(p1, line):
-    return p2
+    if p1 is line.p1:
+        return line.p2
+    return line.p1
 
+
+def nearPoint(aPoint, Points):
+
+    tmp1 = distance(aPoint, Points[0])
+    nearP = 0
+
+    for i in range(1, len(Points)):
+        tmp2 = distance(aPoint, Points[i])
+        if tmp2 < tmp1:
+            nearP = i
+
+    return Points[nearP]
 
 
 # ２点を入れ、２点間の距離を実数で返す。
@@ -57,31 +71,29 @@ def distance(Vi, W): # two Points
 
 
 
-
-"""
-
-    p1 = Point.Point(1,2)
-    p2 = Point.Point(3,4)
-    q1 = Point.Point(5,6)
-    q2 = Point.Point(7,8)
-
-    l1 = Line.Line(p1,p2)
-    l2 = Line.Line(q1,q1)
-
-    line = []
-    line.append(l1)
-    line.append(l2)
-
-    inLine = search_linesOfPoint(p1, line)
-
-    for i in range(len(inLine)):
-        print(inLine[i].p1.y)
-"""
-"""
 if __name__ == '__main__':
-    p1 = Point.Point(1,2)
-    p2 = Point.Point(3,4)
 
-    dts = distance(p1,p2)
-    print(dts)
-    """
+    p1 = Point.Point(0, 0)
+    p2 = Point.Point(2, 5)
+    p3 = Point.Point(4, 7)
+    p4 = Point.Point(5, 5)
+    p5 = Point.Point(7, 1)
+    p6 = Point.Point(9, 5)
+
+
+    l0 = Line.Line(p1, p4)
+    l1 = Line.Line(p1, p6)
+    l2 = Line.Line(p2, p5)
+    l3 = Line.Line(p3, p5)
+    l4 = Line.Line(p6, p4)
+
+    lines = [l0, l1, l2, l3, l4]
+
+
+    A = residence(p5, lines)
+
+    for i in range(len(A.edges)):
+        print(i,"; bPoint:(", A.edges[i].sPoint.x, A.edges[i].sPoint.y, ")ePoint:(", A.edges[i].ePoint.x, A.edges[i].ePoint.y,")")
+
+
+        #A.edges[i].ePoint,":", A.edges[i].value)

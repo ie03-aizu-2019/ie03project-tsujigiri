@@ -20,7 +20,7 @@ class intersection:
         Cpoints = [] # Cross Points
         for i in range(0, M-1): # 0 to end-1
             for j in range(i+1, M): # i+1 to end
-                tmp = Cross_Checks.Cross_Checks(lines[i], lines[j])
+                tmp = Cross_Checks.Cross_Checks(lines[i], lines[j],0)
                 if tmp.CrossApoint:
                     Cpoints.append(tmp.CrossApoint) # for assignment 1
                     Cpoints = self.sort_cross_points(Cpoints)
