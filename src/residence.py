@@ -16,9 +16,13 @@ class residence():
         # test
         for i in range(len(inLines)):
             insec = aLine_inters.aLine_inters(inLines[i], info_lines) # get all intersections
+            # for another work
+            self.edges += another(insec.onLine_Points)
+
+
 
             invPoint = inverse_point(aPoint, inLines[i])
-            #print("invPoint = ",invPoint.x, invPoint.y)
+
 
             insec.onLine_Points.append(invPoint)
 
@@ -69,8 +73,24 @@ def distance(Vi, W): # two Points
     dts = math.sqrt((Vi.y-W.y)**2 + (Vi.x-W.x)**2)
     return dts
 
+def another(cPoints):
+    N = len(cPoints)
+    
+    for i in range(N):
+        print(cPoints[i].x)
+
+    edges = []
+    for i in range(N-1):
+        dis = distance(cPoints[i], cPoints[i+1])
+        edges.append(Edge.Edge(cPoints[i], cPoints[i+1], dis))
+
+    return edges
 
 
+
+
+
+"""
 if __name__ == '__main__':
 
     p1 = Point.Point(0, 0)
@@ -95,5 +115,5 @@ if __name__ == '__main__':
     for i in range(len(A.edges)):
         print(i,"; bPoint:(", A.edges[i].sPoint.x, A.edges[i].sPoint.y, ")ePoint:(", A.edges[i].ePoint.x, A.edges[i].ePoint.y,")")
 
-
+"""
         #A.edges[i].ePoint,":", A.edges[i].value)

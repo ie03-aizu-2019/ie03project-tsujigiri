@@ -9,19 +9,22 @@
 import Point
 import Line
 
+import residence
+
 
 class Collect_Edges():
     def __init__(self, info_lines):
-        edges = [] # the value, which is returned at the end.
-        V = input_pointsOflines(lines) # lines -> all points except for all intersections.
-        for i in range(len(V)):   # all points
-            tmp = residence(V[i]) # get edges against one point.
+        self.edges = [] # the value, which is returned at the end.
+        self.V = self.input_pointsOflines(info_lines) # lines -> all points except for all intersections.
 
-            edges.append(tmp) # store to array
+        for i in range(len(self.V)):   # all points
+            tmp = residence.residence(self.V[i], info_lines) # get edges against one point.
+
+            self.edges += tmp.edges # store to array
 
 
     # collect all node, without duplicates
-    def input_pointsOflines(lines):
+    def input_pointsOflines(self, lines):
         V = []
         for i in range(len(lines)):
             dup = Collect_Edges.search_duplicates(V, lines[i].p1)
@@ -57,7 +60,9 @@ if __name__ == '__main__':
     lines.append(l1)
     lines.append(l2)
 
-    V = Collect_Edges.input_pointsOflines(lines)
 
-    for i in range(len(V)):
-        print(V[i].x)
+    V = Collect_Edges(lines)
+    for i in range(len(V.edges)):
+        print(i,"; bPoint:(", V.edges[i].sPoint.x, V.edges[i].sPoint.y, ")", end = "")
+        print("ePoint:(", V.edges[i].ePoint.x, V.edges[i].ePoint.y,")", end = "")
+        print("value: ", V.edges[i].value)
