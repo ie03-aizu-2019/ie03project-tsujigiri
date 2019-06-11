@@ -6,15 +6,7 @@ import Line
 class information(input_information.input_information):
     def __init__(self):
 
-        super().__init__() # for check
-        """
-        self.N = 4
-        self.M = 2
-        self.x_b = [0, 5, 2, 7]
-        self.y_b = [0, 5, 5, 1]
-        self.b = [1, 3]
-        self.e = [2, 4]
-        """
+        super(information, self).__init__(N, M, P, Q, x_b, y_b, b, e) # for check
         self.points = self.get_point(self.x_b, self.y_b, self.N)
         self.lines = self.get_line(self.points, self.b, self.e, self.M)
 
@@ -34,8 +26,7 @@ class information(input_information.input_information):
 
         return lines
 
-"""
+
 if __name__ == '__main__':
     info = information()
     print(info.lines[1].p2.y)
-"""

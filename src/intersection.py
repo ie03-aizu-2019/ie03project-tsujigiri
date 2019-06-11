@@ -2,12 +2,6 @@
     The program to research there are intersections,
     mC2 times research
 
-    modify at ex2:
-        Cross_Checks: 1 times -> mC2 times
-
-    status: fin.ex1 - go.ex2
-
-    TODO: not complete sort_by_Y.
                                                         """
 
 import Cross_Checks
@@ -16,17 +10,50 @@ import Point
 import Line
 
 
-
 class intersection:
-    # make the Cross Points
-    def intersection(N, line1, line2):
-         Cross_Checks.Cross_Checks.Cross_Checks(N, line1, line2)
+    def __init__(self, lines):
+        self.Cpoints = self.func(lines)
 
+    @classmethod
+    def func(self, lines):
+        M = len(lines)
+        Cpoints = [] # Cross Points
+        for i in range(0, M-1): # 0 to end-1
+            for j in range(i+1, M): # i+1 to end
+                tmp = Cross_Checks.Cross_Checks(lines[i], lines[j])
+                if tmp.CrossApoint:
+                    Cpoints.append(tmp.CrossApoint) # for assignment 1
+                    Cpoints = self.sort_cross_points(Cpoints)
+
+        return Cpoints
 
 
 """
 if __name__ == '__main__':
 
+    N = 6
+    p1 = Point.Point(0, 0)
+    p2 = Point.Point(5, 5)
+    p3 = Point.Point(0, 5)
+    p4 = Point.Point(5, 0)
+
+    p5 = Point.Point(0, 2)
+    p6 = Point.Point(7, 2)
+
+    M = 5
+    lines = []
+
+    lines.append(Line.Line(p1, p2)) #2
+    lines.append(Line.Line(p3, p4)) #4
+    lines.append(Line.Line(p5, p6)) #1
+
+
+    insecs = intersection(lines)
+    for i in range(len(insecs.Cpoints)):
+        print(insecs.Cpoints[i].x, insecs.Cpoints[i].y)
+"""
+"""
+if __name__ == '__main__':
 
     N = 6
     p1 = Point.Point(0, 0)
@@ -39,12 +66,14 @@ if __name__ == '__main__':
     M = 5
     lines = []
 
-    lines.append(Line.Line(p1, p6)) #2
-    lines.append(Line.Line(p3, p5)) #4
-    lines.append(Line.Line(p1, p4)) #1
-    lines.append(Line.Line(p4, p6)) #5
-    lines.append(Line.Line(p2, p5)) #3
+    lines.append(Line.Line(p1, p4))
+    lines.append(Line.Line(p1, p6))
+    lines.append(Line.Line(p2, p5))
+    lines.append(Line.Line(p3, p5))
+    lines.append(Line.Line(p4, p6))
 
 
-    intersection.intersection(N, lines[0], lines[2])
-"""
+    insecs = intersection(lines)
+    for i in range(len(insecs.Cpoints)):
+        pass#print(insecs.Cpoints[i].x, insecs.Cpoints[i].y)
+        """
