@@ -8,6 +8,8 @@ class aLine_inters():
     def __init__(self, aLine, lines):
         self.onLine_Points = self.func(aLine, lines)
 
+    
+
     def func(self, aLine, lines):
         onLine_Points = []
 

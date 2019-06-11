@@ -39,7 +39,9 @@ class residence():
 
             edges.append(aEdge)
 
-            return edges
+
+
+        return edges
 
 
 # ある点（一つでも線の要素となっている点)と複数の線分をいれ、ある点を含む線分をすべて返す。
