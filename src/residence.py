@@ -10,14 +10,19 @@ import aLine_inters
     Search all points next to X, and measure the each distance   """
 class residence():
     def __init__(self, aPoint, info_lines):
-        self.edges = []
+        self.edges = self.func(aPoint, info_lines)
+
+
+    @classmethod
+    def func(self, aPoint, info_lines):
+        edges = []
 
         inLines = search_linesOfPoint(aPoint, info_lines) # all lines, include aPoint as end point
         # test
         for i in range(len(inLines)):
             insec = aLine_inters.aLine_inters(inLines[i], info_lines) # get all intersections
             # for another work
-            self.edges += another(insec.onLine_Points)
+            edges += another(insec.onLine_Points)
 
 
 
@@ -32,8 +37,9 @@ class residence():
 
             aEdge = Edge.Edge(aPoint, near, dis) # build a edge
 
-            self.edges.append(aEdge)
+            edges.append(aEdge)
 
+            return edges
 
 
 # ある点（一つでも線の要素となっている点)と複数の線分をいれ、ある点を含む線分をすべて返す。
@@ -75,9 +81,7 @@ def distance(Vi, W): # two Points
 
 def another(cPoints):
     N = len(cPoints)
-    
-    for i in range(N):
-        print(cPoints[i].x)
+
 
     edges = []
     for i in range(N-1):
@@ -114,6 +118,6 @@ if __name__ == '__main__':
 
     for i in range(len(A.edges)):
         print(i,"; bPoint:(", A.edges[i].sPoint.x, A.edges[i].sPoint.y, ")ePoint:(", A.edges[i].ePoint.x, A.edges[i].ePoint.y,")")
-
 """
+
         #A.edges[i].ePoint,":", A.edges[i].value)
