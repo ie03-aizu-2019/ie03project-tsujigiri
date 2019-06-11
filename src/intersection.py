@@ -23,7 +23,7 @@ class intersection:
                 tmp = Cross_Checks.Cross_Checks(lines[i], lines[j])
                 if tmp.CrossApoint:
                     Cpoints.append(tmp.CrossApoint) # for assignment 1
-                    Cpoints = self.sort_cross_points(Cpoints)
+
 
         return Cpoints
 

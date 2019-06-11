@@ -6,7 +6,7 @@ import Line
 class information(input_information.input_information):
     def __init__(self):
 
-        super(information, self).__init__() # for check
+        super().__init__() # for check
         self.points = self.get_point(self.x_b, self.y_b, self.N)
         self.lines = self.get_line(self.points, self.b, self.e, self.M)
 
@@ -26,7 +26,8 @@ class information(input_information.input_information):
 
         return lines
 
-
+"""
 if __name__ == '__main__':
     info = information()
     print(info.lines[1].p2.y)
+"""

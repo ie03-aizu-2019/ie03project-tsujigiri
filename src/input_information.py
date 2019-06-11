@@ -1,11 +1,9 @@
 class input_information:
     def __init__(self):
-        self.N, self.M, self.P, self.Q = 4, 2, 0, 0
-        self.x_b = [0, 5, 2, 7]
-        self.y_b = [0, 5, 5, 1]
+        self.N, self.M, self.P, self.Q = self.main_info()
+        self.x_b, self.y_b = self.points_info(self.N)
         
-        self.b = [1, 2]
-        self.e = [3, 4]
+        self.b, self.e = self.line_info(self.N, self.M)
 
 
 
@@ -110,7 +108,8 @@ class input_information:
             k.append(tmp[2])
         return s, d, k, c_s, c_d
 
-
+"""
 if __name__ == '__main__':
    test = input_information()
    print(test.N)
+"""
