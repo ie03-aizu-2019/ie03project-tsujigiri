@@ -1,4 +1,4 @@
-import build_Graph
+import Graph
 
 f_inf = float('inf')
 
@@ -13,7 +13,7 @@ class Shortest_Distance:
     def solution(self, lines, points, s, d, Cpoints):
         solutions = []
 
-        G = build_Graph.build_Graph(lines, points) # Graph type
+        G = Graph.Graph(lines, points) # Graph type
         N = len(s)
 
         aSolution = Shortest_roots_problem(G, s[4], d[4], points, Cpoints)
@@ -26,6 +26,24 @@ class Shortest_Distance:
 
 
 def Shortest_roots_problem(G, s, d, points, Cpoints):
+
+    start, end = decide_SandE(G, s, d, points, Cpoints)
+    Nodes = G.vertexes
+
+
+#1:
+    center = Nodes[start]
+    id = [] # each all points has id
+    for i in range(len(Nodes)):
+        if Nodes[i] == center
+
+        else
+            
+
+
+    return 0
+
+def decide_SandE(G, s, d, points, Cpoints): # which the element
     # divide 2 cases, s is cross or not cross.
     regulation = len(Cpoints)
 
@@ -51,14 +69,19 @@ def Shortest_roots_problem(G, s, d, points, Cpoints):
             return None
         dPoint = points[d-1]
 
+    # got sPoint, dPoint
+    # get the relations to Graph
+    for i in range(len(G.vertexes)):
+        if G.vertexes[i] is sPoint:
+            start = i
+        if G.vertexes[i] is ePoint:
+            end = i
+
+
+    return start, end
 
 
 
-
-
-
-
-    return 0
 """
 def for_test(G):
     for i in range(len(G.vertexes)):

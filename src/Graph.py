@@ -12,7 +12,7 @@ import Line
 import residence
 
 
-class build_Graph():
+class Graph():
     def __init__(self, info_lines, info_points):
 
         self.edges = self.func(info_lines, info_points) # edges
@@ -102,7 +102,7 @@ if __name__ == '__main__':
     lines.append(l2)
 
 
-    V = build_Graph(lines)
+    V = Graph(lines)
     for i in range(len(V.edges)):
         print(i,"; bPoint:(", V.edges[i].sPoint.x, V.edges[i].sPoint.y, ")", end = "")
         print("ePoint:(", V.edges[i].ePoint.x, V.edges[i].ePoint.y,")", end = "")
