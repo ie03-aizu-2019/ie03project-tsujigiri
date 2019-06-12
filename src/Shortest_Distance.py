@@ -52,14 +52,15 @@ def Shortest_roots_problem(G, s, d, points, Cpoints):
         dPoint = points[d-1]
 
 
-    """
-    implementation
-    
+
+
+
 
 
 
     return 0
-
+"""
 def for_test(G):
     for i in range(len(G.vertexes)):
         print(G.vertexes[i].x, G.vertexes[i].y)
+        """
