@@ -28,15 +28,14 @@ class Cross_Checks():
 
     @classmethod
     def Mode1(self, l1, l2):
-        A = Step1(l1, l2)
-        if A != 0: # if not, no intersection
+        A = Step1(l1, l2) # A is determinant
 
-            s, t = Step2(A, l1, l2)
+        if A != 0: # devide 2 case, (1) if A is 0, right then no intersection. (2) if A is not 0, then coninue
+            s, t = Step2(A, l1, l2) # s, t are each palameter set
             if (((0 <= s) and (s <= 1)) and ((0 < t) and (t < 1))) or (((0 < s) and (s < 1)) and ((0 <= t) and (t <= 1))): # only line to line or line to point
                 if Step3(s, t):
                     x, y = Step4(l1, l2, s, t)
                     cPoint = Point.Point(x, y)
-
                     return cPoint
 
         return False
@@ -77,7 +76,7 @@ def Step4(l1, l2, s, t):
 
     return x, y
 
-"""
+
 if __name__ == '__main__':
 
     p1 = Point.Point(0, 0)
@@ -89,11 +88,11 @@ if __name__ == '__main__':
     l2 = Line.Line(p2, q2)
 
 
-    point = Cross_Checks(l1, l2)
+    point = Cross_Checks(l1, l2, 0)
     if point.CrossApoint:
         print(point.CrossApoint.x, point.CrossApoint.y)
 
-"""
+
 """
 # ex2, example
 p1 = Point.Point(0, 0)
