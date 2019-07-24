@@ -1,8 +1,8 @@
 class input_information:
     def __init__(self):
         self.N, self.M, self.P, self.Q = self.main_info()
-        self.x_b, self.y_b = self.points_info(self.N)
-        
+        self.x_1, self.y_2 = self.points_info(self.N)
+
         self.b, self.e = self.line_info(self.N, self.M)
 
 

@@ -8,6 +8,7 @@ def intersection(line1, line2): # A two lines, twolines.
     s3 = signed_tri(line2, line1.p1)
     s4 = signed_tri(line2, line1.p2)
 
+
     if s1*s2*s3*s4 > 0: # cross check
         cPoint = cross_point(line1, line2)
 
