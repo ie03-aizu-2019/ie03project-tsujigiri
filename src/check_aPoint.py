@@ -1,20 +1,19 @@
-import Point
-import Line
+from Point import Point
+from Line import Line
 
-def intersection(line1, line2): # A two lines, twolines.
+def check_aPoint(line1, line2): # A two lines, twolines.
     # line1 check
     s1 = signed_tri(line1, line2.p1)
     s2 = signed_tri(line1, line2.p2)
     s3 = signed_tri(line2, line1.p1)
     s4 = signed_tri(line2, line1.p2)
 
-
     if s1*s2*s3*s4 > 0: # cross check
         cPoint = cross_point(line1, line2)
-
         return cPoint
 
-    return False
+
+    return Point(None, None)
 
 
 def signed_tri(line, aPoint):
@@ -35,26 +34,28 @@ def cross_point(line1, line2):
     x = line1.p1.x + (line1.p2.x - line1.p1.x)*s
     y = line1.p1.y + (line1.p2.y - line1.p1.y)*s
 
-    return [x, y]
+    cpoint = Point(x, y)
+
+    return cpoint
 
 if __name__ == '__main__':
 
     N = 6
-    p1 = Point.Point(0, 0)
-    p2 = Point.Point(2, 5)
-    p3 = Point.Point(4, 7)
-    p4 = Point.Point(5, 5)
-    p5 = Point.Point(7, 1)
-    p6 = Point.Point(9, 5)
+    p1 = Point(0, 0)
+    p2 = Point(2, 5)
+    p3 = Point(4, 7)
+    p4 = Point(5, 5)
+    p5 = Point(0, 1)
+    p6 = Point(3, 5)
 
     M = 5
     lines = []
 
-    lines.append(Line.Line(p1, p4))
-    lines.append(Line.Line(p1, p6))
-    lines.append(Line.Line(p2, p5))
-    lines.append(Line.Line(p3, p5))
-    lines.append(Line.Line(p4, p6))
+    lines.append(Line(p1, p4))
+    lines.append(Line(p1, p6))
+    lines.append(Line(p2, p5))
 
-    insecs = intersection(lines[1], lines[2])
-    print(insecs)
+    lines.append(Line(p1, p5))
+    lines.append(Line(p2, p6))
+
+    insecs = check_aPoint(lines[2], lines[2])
