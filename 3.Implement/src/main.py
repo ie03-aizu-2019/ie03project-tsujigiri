@@ -8,17 +8,13 @@ class main():
         A_crosspoint = check_aPoint(main_information.lines[0], main_information.lines[1])
         display_Acrosspoint(A_crosspoint)
 
-        """
-        insecs = intersection.intersection(info.lines)
-        display_a_intersectionPoint(insecs.Cpoints)
-        """
+
+
 def display_Acrosspoint(A_crosspoint):
     if A_crosspoint.x == None:
         print("NA")
     else:
         print(A_crosspoint.x, A_crosspoint.y)
-
-
 
 
         #Print(insecs.Cpoints[0].CrossApoint.x, insecs.Cpoints[0].CrossApoint.y)
