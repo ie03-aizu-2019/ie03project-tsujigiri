@@ -5,13 +5,16 @@ from build_intersections import build_intersections
 class main():
     def __init__(self):
         main_information = build_information()
-        some_crosspoint = build_intersections(main_information.lines)
+        some_crosspoint = build_intersections(main_information.lines).some_crosspoint
         display_somecrosspoint(some_crosspoint)
 
 
 def display_somecrosspoint(some_crosspoint):
-    for i in range(len(some_crosspoint)):
-        if some_crosspoint[i].x != None:
+    if len(some_crosspoint) == 0:
+        print("NA")
+
+    else:
+        for i in range(len(some_crosspoint)):
             print(some_crosspoint[i].x, some_crosspoint[i].y)
 
 
