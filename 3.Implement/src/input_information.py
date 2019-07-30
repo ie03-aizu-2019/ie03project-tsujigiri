@@ -35,8 +35,8 @@ def main_info():
         P = tmp[2]
         Q = tmp[3]
         # regulation checks(3)
-        if (3 <= N) and (N <= 4):
-            if (2 <= M) and (M <= 2):
+        if (2 <= N) and (N <= 200):
+            if (1 <= M) and (M <= 100):
                 if(P == 0):
                     if (0 <= Q) and (Q <= 0):
                         break
@@ -50,7 +50,6 @@ def point1_info(N):
                 raise TestError
             except:
                 print("input point1 information")
-
 
     return points_info(N)
 def line_info(N, M):
@@ -153,12 +152,6 @@ def points_info(Num):
 
         while(True): # loop for regulation check
             tmp = list(map(int, input().split()))
-            if(len(args) == 2):     # Check manual mode
-                if( args[1] == "-t" ):
-                    try:
-                        raise TestError
-                    except:
-                        print("")
             if(len(args) == 2):     # Check manual mode
                 if( args[1] == "-t" ):
                     try:

@@ -9,18 +9,11 @@ class main():
         display_somecrosspoint(some_crosspoint)
 
 
-
 def display_somecrosspoint(some_crosspoint):
     for i in range(len(some_crosspoint)):
-        
-        if some_crosspoint.x == None:
-            print("NA")
-        else:
-            print(some_crosspoint.x, some_crosspoint.y)
+        if some_crosspoint[i].x != None:
+            print(some_crosspoint[i].x, some_crosspoint[i].y)
 
-
-        #Print(insecs.Cpoints[0].CrossApoint.x, insecs.Cpoints[0].CrossApoint.y)
-        #intersection2.intersection2(info.lines[0], info.lines)
 
 
 if __name__ == '__main__':
