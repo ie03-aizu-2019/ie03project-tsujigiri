@@ -143,24 +143,9 @@ def points_info(Num):
     xArray = []
     yArray = []
     for i in range(Num):
-        if(len(args) == 2):     # Check manual mode
-            if( args[1] == "-t" ):
-                try:
-                    raise TestError
-                except:
-                    print("No.",i+1, end="  ")
 
         while(True): # loop for regulation check
             tmp = list(map(int, input().split()))
-            if(len(args) == 2):     # Check manual mode
-                if( args[1] == "-t" ):
-                    try:
-                        raise TestError
-                    except:
-                        if len(tmp) != 2:
-                            print("No.",i+1, end="  ")
-                            continue
-
 
             x = tmp[0]
             y = tmp[1]
@@ -168,12 +153,6 @@ def points_info(Num):
             if (0 <= x and x <= 1000) and (0 <= y and y <= 1000):
                 break
 
-            if(len(args) == 2):     # Check manual mode
-                if( args[1] == "-t" ):
-                    try:
-                        raise TestError
-                    except:
-                        print("No.",i+1, end="  ")
 
         xArray.append(x)
         yArray.append(y)

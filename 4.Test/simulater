@@ -1,72 +1,21 @@
 #!/bin/bash
 
-echo "Simulates ex1."
-echo "Test list:"
-ls testData
-
-echo -n "Which?: "
+ls ./testData
+echo -n "Which attempt? - all?: "
 read which
 
 tmp="all"
 
 # all case
 if [ ${which} = ${tmp} ]; then
-  :
-
-  << ALLCASE
-  for file in `\find ./testData -maxdepth 1 -type f`; do
-    echo "($file) conponents:"
-
-    cat $file
-    echo
-
-    echo "result:"
-
-    python /Users/gatarat/Desktop/ie03project-tsujigiri/3.Implement/src/main.py < $file > result
-    file+="_Expect"
-
-    cat result
-    pwd
-    #diff result expect/$file > dif
-    cat result
-    cat expect/$file
-
-    FILE=dif
-    if [ ! -s $FILE ]; then # empty file
-      echo "and Result is Correct!!"
-
-    else
-      echo "and Result is Wrong...Org"
-    fi
-
-  done
-
-ALLCASE
+  ./simulate_all
 
 # one case
 elif [ ${which} ]; then
+  echo $which > tmp
+  ./simulate_unit
 
-  echo "($which) conponents:"
-  cat ./testData/$which
-  echo
-
-  echo "result:"
-
-  python /Users/gatarat/Desktop/ie03project-tsujigiri/3.Implement/src/main.py < ./testData/$which > result
-  which+="_Expect"
-
-  cat result
-  diff result expect/$which > dif
-
-  FILE=dif
-  if [ ! -s $FILE ]; then # empty file
-    echo "and Result is Correct!!"
-
-  else
-    echo "and Result is Wrong...Org"
-  fi
-
-  rm dif
-
+else
+  exit
 
 fi
