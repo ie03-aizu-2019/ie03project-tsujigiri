@@ -1,20 +1,22 @@
 from build_information import build_information
-from check_aPoint import check_aPoint
+from build_intersections import build_intersections
 
 
 class main():
     def __init__(self):
         main_information = build_information()
-        A_crosspoint = check_aPoint(main_information.lines[0], main_information.lines[1])
-        display_Acrosspoint(A_crosspoint)
+        some_crosspoint = build_intersections(main_information.lines)
+        display_somecrosspoint(some_crosspoint)
 
 
 
-def display_Acrosspoint(A_crosspoint):
-    if A_crosspoint.x == None:
-        print("NA")
-    else:
-        print(A_crosspoint.x, A_crosspoint.y)
+def display_somecrosspoint(some_crosspoint):
+    for i in range(len(some_crosspoint)):
+        
+        if some_crosspoint.x == None:
+            print("NA")
+        else:
+            print(some_crosspoint.x, some_crosspoint.y)
 
 
         #Print(insecs.Cpoints[0].CrossApoint.x, insecs.Cpoints[0].CrossApoint.y)
