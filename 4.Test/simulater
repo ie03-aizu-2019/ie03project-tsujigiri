@@ -1,14 +1,16 @@
 #!/bin/bash
 
+echo "Test list:"
 ls ./testData
 echo -n "Which attempt? - all?: "
 read which
+
 
 tmp="all"
 
 # all case
 if [ ${which} = ${tmp} ]; then
-  ./simulate_all
+  exit
 
 # one case
 elif [ ${which} ]; then

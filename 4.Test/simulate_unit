@@ -1,5 +1,4 @@
 #!/bin/bash
-
 which=$(<tmp)
 rm tmp
 clear
@@ -9,5 +8,6 @@ echo "---[$which] conponents:---"
 cat ./testData/$which
 echo
 echo "---result:---"
-python ~/Desktop/ie03project-tsujigiri/3.Implement/src/main.py < ./testData/$which > result
+
+python ~/Desktop/ie03project-tsujigiri/3.Implement/src/main.py < ~/Desktop/ie03project-tsujigiri/4.Test/testData/$which > result
 cat result

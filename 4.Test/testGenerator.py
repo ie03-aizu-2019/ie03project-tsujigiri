@@ -92,7 +92,7 @@ def general():
         cont = str(n)+" "+str(m)+" "+str(p)+" "+str(q)+"\n"
         file.write(cont)
 
-        for point in range(m):
+        for point in range(n):
             x = random.randint(X[0], X[1])
             y = random.randint(X[0], X[1])
 
